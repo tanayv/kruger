@@ -31,10 +31,10 @@ app.post('/webhook', (req, res) => {
 
         // Check if the event is a message or postback and
         // pass the event to the appropriate handler function
-        if (webhook_event.message) {
-            handleMessage(senderPsID, webhook_event.message);        
-        } else if (webhook_event.postback) {
-            handlePostback(senderPsID, webhook_event.postback);
+        if (webhookEvent.message) {
+            handleMessage(senderPsID, webhookEvent.message);        
+        } else if (webhookEvent.postback) {
+            handlePostback(senderPsID, webhookEvent.postback);
         }
 
     });
@@ -85,7 +85,7 @@ function handleMessage(sender_psid, received_message) {
 
     // Create the payload for a basic text message
     response = {
-        "text": `Man's not hot`
+        "text": `Long time my bruddah. Man's not hot`
     }
     }  
     
