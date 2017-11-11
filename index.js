@@ -165,8 +165,7 @@ function addCard(title, desc, due, list) {
     }
 
     request(options, function (error, response, body) {
-        if (error)
-            return error.toString();
+        if (error) throw new Error(error);
         else
             return response.toString();
         console.log(body);
