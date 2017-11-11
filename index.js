@@ -142,10 +142,12 @@ function callSendAPI(sender_psid, response) {
 
 function addCard(title, desc, due, list) {    
     if (list = 'hw')
-        var listID = 'wdsP3KuR';
+        var listID = '59ad8e8bb34eb055223399d7';
     else if (list = 'side')
-        var listID = 'B1ajtkHs';
-
+        var listID = '59ad8e94e2f50ce6fdd7f3f2';
+    else if (list = 'exam')
+        var listID = '59b9f99917b3d05d8c27374e';
+    
     var options = { 
         method: 'POST',
         url: 'https://api.trello.com/1/cards',
@@ -161,7 +163,10 @@ function addCard(title, desc, due, list) {
     }
 
     request(options, function (error, response, body) {
-        return response;
+        if (error)
+            return error;
+        else
+            return response;
         console.log(body);
     });
 }
