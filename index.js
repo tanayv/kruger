@@ -142,9 +142,9 @@ function callSendAPI(sender_psid, response) {
 
 function addCard(title, desc, due, list) {    
     if (list = 'hw')
-        listID = 'wdsP3KuR';
+        var listID = 'wdsP3KuR';
     else if (list = 'side')
-        listID = 'B1ajtkHs';
+        var listID = 'B1ajtkHs';
 
     var options = { 
         method: 'POST',
