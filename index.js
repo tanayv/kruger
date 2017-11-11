@@ -2,11 +2,11 @@
 
 // Imports dependencies and set up http server
 const 
+  request = require('request'),
   express = require('express'),
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()),
-  PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN,
-  request = express.request
+  PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -96,7 +96,19 @@ function handleMessage(sender_psid, received_message) {
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
-
+    console.log('ok')
+    let response;
+   // Get the payload for the postback
+   let payload = received_postback.payload;
+ 
+   // Set the response based on the postback payload
+   if (payload === 'yes') {
+     response = { "text": "Thanks!" }
+   } else if (payload === 'no') {
+     response = { "text": "Oops, try sending another image." }
+   }
+   // Send the message to acknowledge the postback
+   callSendAPI(sender_psid, response);
 }
 
 // Sends response messages via the Send API
@@ -110,10 +122,9 @@ function callSendAPI(sender_psid, response) {
   }
 
   // Send the HTTP request to the Messenger Platform
-  request({
+  request.post({
     "uri": "https://graph.facebook.com/v2.6/me/messages",
     "qs": { "access_token": PAGE_ACCESS_TOKEN },
-    "method": "POST",
     "json": request_body
   }, (err, res, body) => {
     if (!err) {
