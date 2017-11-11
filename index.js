@@ -87,7 +87,7 @@ function handleMessage(sender_psid, received_message) {
     if (received_message.text) {    
     
         if (received_message.text == "trello")
-            responseText = trello.addCard("Test Hw Card", "test description", "11/12/2017", "hw");
+            responseText = addCard("Test Hw Card", "test description", "11/12/2017", "hw");
         
         // Create the payload for a basic text message
         response = {
@@ -138,6 +138,32 @@ function callSendAPI(sender_psid, response) {
       console.error("Unable to send message:" + err);
     }
   }); 
+}
+
+function addCard(title, desc, due, list) {    
+    if (list = 'hw')
+        listID = 'wdsP3KuR';
+    else if (list = 'side')
+        listID = 'B1ajtkHs';
+
+    var options = { 
+        method: 'POST',
+        url: 'https://api.trello.com/1/cards',
+        key: '6663212c465dd85d568ed53171ab4619',
+        token: '191e775a7e6ee058ae9c6af6b7b7294409bbfc0e3cbcd61508ab68e75e3476d3',
+    };
+
+    var body = {
+        title: title, 
+        desc: desc,
+        due: due,
+        idList: listID
+    }
+
+    request(options, function (error, response, body) {
+        return response;
+        console.log(body);
+    });
 }
 
 
