@@ -162,7 +162,7 @@ function addCard(title, desc, due, list) {
         desc: desc,
         due: due,
         idList: listID
-    }
+    };
 
     request(options, function (error, response, body) {
         if (error) throw new Error(error);
