@@ -6,7 +6,7 @@ const
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()),
   PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN,
-  request = require('http').request()
+  request = express.request
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
