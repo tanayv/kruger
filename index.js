@@ -7,6 +7,8 @@ const
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()),
   PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+
+  var trello = require('./src/external/trello.js');
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -16,7 +18,7 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 app.post('/webhook', (req, res) => {  
     
      let body = req.body;
-   
+    
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
 
@@ -83,11 +85,14 @@ function handleMessage(sender_psid, received_message) {
 
     // Check if the message contains text
     if (received_message.text) {    
-
-    // Create the payload for a basic text message
-    response = {
-        "text": `Long time my bruddah. Man's not hot`
-    }
+    
+        if (received_message.text == "trello")
+            responseText = trello.addCard("Test Hw Card", "test description", "11/12/2017", "hw");
+        
+        // Create the payload for a basic text message
+        response = {
+            "text": responseText
+        }
     }  
     
     // Sends the response message
@@ -134,3 +139,5 @@ function callSendAPI(sender_psid, response) {
     }
   }); 
 }
+
+
