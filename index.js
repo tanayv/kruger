@@ -12,8 +12,6 @@ const
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
-
-
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
     
@@ -88,14 +86,14 @@ function handleMessage(sender_psid, received_message) {
     
         if (received_message.text == "trello")
             var responseText = addCard("Test Hw Card", "test description", "11/12/2017", "hw");
+            console.log("Response Text: " + responseText);
         
         // Create the payload for a basic text message
         response = {
-            "text": responseText
-        }
+            "text": "Perspiration Ting"
+        };
 
-        console.log("Response Text: " + responseText);
-    }  
+    }
     
     // Sends the response message
     callSendAPI(sender_psid, response);
@@ -150,26 +148,29 @@ function addCard(title, desc, due, list) {
     else if (list = 'exam')
         var listID = '59b9f99917b3d05d8c27374e';
     
-    var options = { 
-        method: 'POST',
-        url: 'https://api.trello.com/1/cards',
-        key: '6663212c465dd85d568ed53171ab4619',
-        token: '191e775a7e6ee058ae9c6af6b7b7294409bbfc0e3cbcd61508ab68e75e3476d3',
+    var options = {
+        "key": '6663212c465dd85d568ed53171ab4619',
+        "token": '191e775a7e6ee058ae9c6af6b7b7294409bbfc0e3cbcd61508ab68e75e3476d3',
     };
 
     var body = {
-        title: title, 
+        name: title, 
         desc: desc,
         due: due,
         idList: listID
     };
 
-    request(options, function (error, response, body) {
-        if (error) throw new Error(error);
-        else
-            return response.toString();
-        console.log(body);
-    });
+    request.post({
+        "uri": "https://api.trello.com/1/cards",
+        "qs": options,
+        "json": body
+      }, (err, res, body) => {
+        if (!err) {
+          return "Success!"
+        } else {
+          console.error("Unable to send message:" + err);
+        }
+      }); 
 }
 
 
