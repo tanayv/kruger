@@ -93,6 +93,8 @@ function handleMessage(sender_psid, received_message) {
         response = {
             "text": responseText
         }
+
+        console.log("Response Text: " + responseText);
     }  
     
     // Sends the response message
