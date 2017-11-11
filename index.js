@@ -87,7 +87,7 @@ function handleMessage(sender_psid, received_message) {
     if (received_message.text) {    
     
         if (received_message.text == "trello")
-            responseText = addCard("Test Hw Card", "test description", "11/12/2017", "hw");
+            var responseText = addCard("Test Hw Card", "test description", "11/12/2017", "hw");
         
         // Create the payload for a basic text message
         response = {
