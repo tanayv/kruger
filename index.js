@@ -94,7 +94,7 @@ function handleMessage(sender_psid, received_message) {
             var responseText = addCard("Test Hw Card", "test description", "11/12/2017", "hw");
         }
         else {
-            var dfReq = dialogFlow.textRequest('<Your text query>', {
+            var dfReq = dialogFlow.textRequest(received_message.text, {
                 sessionId: 'TINGGGGOESSSBAPBAPSKIDDYBAP'
             });
             dfReq.on('response', function(dfResp) {
@@ -108,9 +108,9 @@ function handleMessage(sender_psid, received_message) {
 
         // Create the payload for a basic text message
         response = {
-            "text": responseText
+            "text": "" + responseText
         };
-
+        console.log("Response Text: " + responseText);
     }
     
     // Sends the response message
@@ -187,9 +187,11 @@ function addCard(title, desc, due, list) {
         if (!err) {
           return "Success!"
         } else {
-          console.error("Unable to send message:" + err);
+          return("Unable to send message:" + err);
         }
       }); 
+
+    return "ola fangulay";
 }
 
 
