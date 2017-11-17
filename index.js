@@ -31,10 +31,8 @@ app.post('/webhook', (req, res) => {
         // will only ever contain one message, so we get index 0
         let webhookEvent = entry.messaging[0];
         // Get the sender PSID
-        //if (webhookEvent.sender.Id)
         let senderPsID = webhookEvent.sender.id;
-        console.log("Message Received");
-
+        
         // Check if the event is a message or postback and
         // pass the event to the appropriate handler function
         if (webhookEvent.message) {
@@ -89,6 +87,7 @@ function handleMessage(sender_psid, received_message) {
     // Check if the message contains text
     if (received_message.text) {    
         console.log("Text from Msg: " + received_message.text);
+        console.log("Sender: " + sender_psid);
         var intentArray = {};
         intentArray = received_message.text.split(",");
         if (intentArray[0] = "trello") {
