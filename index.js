@@ -19,8 +19,8 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
     
-     let body = req.body;
-    console.log(body);
+    let body = req.body;
+    //console.log(body);
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
 
@@ -92,10 +92,12 @@ function handleMessage(sender_psid, received_message) {
         var responseText = "Gadhe kaisa code likha hai, mujhe sar mein dard de raha hai";
         intentArray = received_message.text.split(",");
         if (intentArray[0] == "trello") {
+            console.log("Intent: Call to Trello");
             var responseText = addCard("Test Hw Card", "test description", "11/12/2017", "hw");
         }
 
         else {
+            console.log("Transmiiting Intent")
             var dfReq = dialogFlow.textRequest(received_message.text, {
                 sessionId: 'TINGGGGOESSSBAPBAPSKIDDYBAP'
             });
