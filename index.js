@@ -194,7 +194,7 @@ function addCard(title, desc, due, list) {
         idList: listID
     };
 
-    var reqStatus = 0;
+    var reqStatus = 2;
     request.post({
         "uri": "https://api.trello.com/1/cards",
         "qs": options,
