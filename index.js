@@ -98,6 +98,7 @@ function handleMessage(sender_psid, received_message) {
                 "text": "" + responseText
             };
             console.log("Response Text: " + responseText);
+            callSendAPI(sender_psid, response);
         }
 
         else {
@@ -106,7 +107,7 @@ function handleMessage(sender_psid, received_message) {
                 sessionId: 'TINGGGGOESSSBAPBAPSKIDDYBAP'
             });
             dfReq.on('response', function(dfResp) {
-                responseText = dfResp.result.speech;
+                responseText = dfResp.result.fulfillment.speech;
                 response = {
                     "text": "" + responseText
                 };
@@ -193,7 +194,7 @@ function addCard(title, desc, due, list) {
         idList: listID
     };
 
-    var reqStatus = 1;
+    var reqStatus = 0;
     request.post({
         "uri": "https://api.trello.com/1/cards",
         "qs": options,
@@ -212,6 +213,8 @@ function addCard(title, desc, due, list) {
         return "Couldn't connect to Trello";
     else if (reqStatus == 2)
         return "Daal toh diya but tu ullu deadline ke 2-3 ghante pehle tak nahi khatam karega ye jo bhi hai usko";
+    else 
+        return "Don't know what happened, could have been sent. Why don't you check Trello?";
 }
 
 
