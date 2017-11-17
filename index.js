@@ -6,9 +6,13 @@ const
   express = require('express'),
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()),
-  PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+  PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN,
+  apiai = require('apiai');
 
   var trello = require('./src/external/trello.js');
+
+  var dialogFlow = apiai("9a0b6340452843e0a3d33922d1a11669");
+
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -84,13 +88,26 @@ function handleMessage(sender_psid, received_message) {
     // Check if the message contains text
     if (received_message.text) {    
     
-        if (received_message.text == "trello")
+        intentArray = received_message.text.split(",");
+        if (intentArray[0] = "trello") {
             var responseText = addCard("Test Hw Card", "test description", "11/12/2017", "hw");
-            console.log("Response Text: " + responseText);
-        
+        }
+        else {
+            var dfReq = dialogFlow.textRequest('<Your text query>', {
+                sessionId: 'TINGGGGOESSSBAPBAPSKIDDYBAP'
+            });
+            dfReq.on('response', function(dfResp) {
+                responseText = dfResp;
+            });
+            dfReq.on('error', function(error) {
+                responseText = "Gadhe Code likhna nahi aata?"
+            });
+            dfReq.end();
+        }
+
         // Create the payload for a basic text message
         response = {
-            "text": "Perspiration Ting"
+            "text": responseText
         };
 
     }
