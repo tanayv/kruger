@@ -88,18 +88,23 @@ function handleMessage(sender_psid, received_message) {
     if (received_message.text) {    
         console.log("Text from Msg: " + received_message.text);
         console.log("Sender: " + sender_psid);
-        var intentArray = [];
+        var intentArray = {};
         var responseText = "Gadhe kaisa code likha hai, mujhe sar mein dard de raha hai";
         intentArray = received_message.text.split(",");
         
         if (intentArray[0].toLowerCase() == "trello") {
             console.log("Intent: Call to Trello");
-            if (intentArray.length > 1 || intentArray[1].toLowerCase() != "help") {
+            if (intentArray.length > 1 ) {
+                if (intentArray[1].toLowerCase() != "help") {
                     trelloTitle = intentArray[1][0].toUpperCase();
                     trelloDesc = intentArray[2];
                     trelloDue = intentArray[3];
                     trelloType = intentArray[4]
                     responseText = addCard(trelloTitle, trelloDesc, trelloDue, trelloType);
+                }
+                else {
+                    responseText = "Follow this format: Trello, Title, Description, Due Date, Type";
+                }
             }
 
             else {
