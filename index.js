@@ -89,10 +89,12 @@ function handleMessage(sender_psid, received_message) {
         console.log("Text from Msg: " + received_message.text);
         console.log("Sender: " + sender_psid);
         var intentArray = {};
+        var responseText = "Gadhe kaisa code likha hai, mujhe sar mein dard de raha hai";
         intentArray = received_message.text.split(",");
-        if (intentArray[0] = "trello") {
+        if (intentArray[0] == "trello") {
             var responseText = addCard("Test Hw Card", "test description", "11/12/2017", "hw");
         }
+
         else {
             var dfReq = dialogFlow.textRequest(received_message.text, {
                 sessionId: 'TINGGGGOESSSBAPBAPSKIDDYBAP'
@@ -179,19 +181,23 @@ function addCard(title, desc, due, list) {
         idList: listID
     };
 
+    var reqStatus = 1;
     request.post({
         "uri": "https://api.trello.com/1/cards",
         "qs": options,
         "json": body
       }, (err, res, body) => {
-        if (!err) {
-          return "Success!"
+        if (err) {
+          reqStatus = 1;
         } else {
-          return("Unable to send message:" + err);
+          reqStatus = 0;
         }
       }); 
 
-    return "ola fangulay";
+    if (reqStatus == 1)
+        return "Couldn't connect to Trello";
+    else 
+        return "Daal toh diya but tu ullu deadline ke 2-3 ghante pehle tak nahi khatam karega ye jo bhi hai usko";
 }
 
 
