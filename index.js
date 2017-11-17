@@ -106,7 +106,7 @@ function handleMessage(sender_psid, received_message) {
                 sessionId: 'TINGGGGOESSSBAPBAPSKIDDYBAP'
             });
             dfReq.on('response', function(dfResp) {
-                responseText = dfResp.fulfillment.speech;
+                responseText = JSON.stringify(dfResp);
                 response = {
                     "text": "" + responseText
                 };
