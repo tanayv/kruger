@@ -93,7 +93,11 @@ function handleMessage(sender_psid, received_message) {
         intentArray = received_message.text.split(",");
         if (intentArray[0] == "trello") {
             console.log("Intent: Call to Trello");
-            var responseText = addCard("Test Hw Card", "test description", "11/12/2017", "hw");
+            responseText = addCard("Test Hw Card", "test description", "11/12/2017", "hw");
+            response = {
+                "text": "" + responseText
+            };
+            console.log("Response Text: " + responseText);
         }
 
         else {
@@ -103,22 +107,28 @@ function handleMessage(sender_psid, received_message) {
             });
             dfReq.on('response', function(dfResp) {
                 responseText = dfResp;
+                response = {
+                    "text": "" + responseText
+                };
+                console.log("Response Text: " + responseText);
+                callSendAPI(sender_psid, response);
             });
             dfReq.on('error', function(error) {
-                responseText = "Gadhe Code likhna nahi aata?"
+                responseText = "Gadhe Code likhna nahi aata?";
+                response = {
+                    "text": "" + responseText
+                };
+                console.log("Response Text: " + responseText);
             });
             dfReq.end();
         }
 
         // Create the payload for a basic text message
-        response = {
-            "text": "" + responseText
-        };
-        console.log("Response Text: " + responseText);
+        
     }
     
     // Sends the response message
-    callSendAPI(sender_psid, response);
+    
 }
 
 // Handles messaging_postbacks events
