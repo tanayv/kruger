@@ -94,28 +94,20 @@ function handleMessage(sender_psid, received_message) {
         
         if (intentArray[0].toLowerCase() == "trello") {
             console.log("Intent: Call to Trello");
-            if (intentArray.length > 1) {
-                if (intentArray[1].toLowerCase() == "help")
-                    responseText = "Trello, Title, Description, Due Date, Type";
-
-                else {
+            if (intentArray.length > 1 || intentArray[1].toLowerCase() != "help") {
                     trelloTitle = intentArray[1][0].toUpperCase();
                     trelloDesc = intentArray[2];
                     trelloDue = intentArray[3];
                     trelloType = intentArray[4]
                     responseText = addCard(trelloTitle, trelloDesc, trelloDue, trelloType);
-                    response = {
-                        "text": "" + responseText
-                    };
-                }
             }
+
             else {
-
+                esponseText = "Follow this format: Trello, Title, Description, Due Date, Type";
             }
-
-
-            
-            console.log("Response Text: " + responseText);
+            response = {
+                "text": "" + responseText
+            };
             callSendAPI(sender_psid, response);
         }
 
