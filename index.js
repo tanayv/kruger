@@ -88,7 +88,8 @@ function handleMessage(sender_psid, received_message) {
 
     // Check if the message contains text
     if (received_message.text) {    
-        console.log("Message Received!");
+        console.log("Text from Msg: " + received_message.text);
+        var intentArray = {};
         intentArray = received_message.text.split(",");
         if (intentArray[0] = "trello") {
             var responseText = addCard("Test Hw Card", "test description", "11/12/2017", "hw");
