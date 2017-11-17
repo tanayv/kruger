@@ -96,10 +96,10 @@ function handleMessage(sender_psid, received_message) {
             console.log("Intent: Call to Trello");
             if (intentArray.length > 1 ) {
                 if (intentArray[1].toLowerCase() != "help") {
-                    trelloTitle = intentArray[1];
-                    trelloDesc = intentArray[2];
-                    trelloDue = intentArray[3];
-                    trelloType = intentArray[4];
+                    var trelloTitle = intentArray[1];
+                    var trelloDesc = intentArray[2];
+                    var trelloDue = intentArray[3];
+                    var trelloType = intentArray[4];
                     responseText = addCard(trelloTitle, trelloDesc, trelloDue, trelloType);
                 }
                 else {
