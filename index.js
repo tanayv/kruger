@@ -90,7 +90,7 @@ function handleMessage(sender_psid, received_message) {
         console.log("Sender: " + sender_psid);
         var intentArray = [];
         var responseText = "Gadhe kaisa code likha hai, mujhe sar mein dard de raha hai";
-        intentArray = received_message.text.split("/");
+        intentArray = received_message.text.split(",");
         
         if (intentArray[0].toLowerCase() == "trello") {
             console.log("Intent: Call to Trello");
@@ -103,7 +103,7 @@ function handleMessage(sender_psid, received_message) {
             }
 
             else {
-                esponseText = "Follow this format: Trello, Title, Description, Due Date, Type";
+                responseText = "Follow this format: Trello, Title, Description, Due Date, Type";
             }
             response = {
                 "text": "" + responseText
