@@ -2,16 +2,16 @@
 An experimental personal assistant bot for the Facebook Messenger platform
 
 ## Contents 
-1. [Key Dependencies](#key-dependencies)
-2. [To-do](#to-do)
-3. [Functionality (WIP)](#functionality) <br>
-  A. [DialogFlow](#dialogflow) <br>
-  B. [Trello API](#trello-api) <br>
-  C. [Spotify API](#spotify-api) <br>
-4. [Guides (WIP)](#guides) <br>
-  A. [Deploying Webhook on Heroku + Connecting to Facebook Messenger](#deploying-webhook-on-heroku--connecting-to-facebook-messenger) <br>
-  B. [Integrating Custom DialogFlow Agent](#integrating-custom-dialogFlow-agent) <br>
-  C. [Spotify API](#spotify-api) <br>
+- [Key Dependencies](#key-dependencies)
+- [To-do](#to-do)
+- [Functionality (WIP)](#functionality) <br>
+  - [DialogFlow](#dialogflow) <br>
+  - [Trello API](#trello-api) <br>
+  - [Spotify API](#spotify-api) <br>
+- [Guides (WIP)](#guides) <br>
+  - [Deploying Webhook on Heroku + Connecting to Facebook Messenger](#deploying-webhook-on-heroku--connecting-to-facebook-messenger) <br>
+  - [Integrating Custom DialogFlow Agent](#integrating-custom-dialogFlow-agent) <br>
+  - [Spotify API](#spotify-api) <br>
 
 ## Key Dependencies
 - request (^2.83.0): Make HTTP post requests to External APIs
@@ -24,7 +24,7 @@ An experimental personal assistant bot for the Facebook Messenger platform
 - [ ] Create subdirectory for external API caller functions (Trello, Spotify etc)
 - [ ] Transfer all intents to DialogFlow agent to avoid embarrassment
 - [ ] Figure out how to conserve commits to GitHub (Not all deployment commits are needed here)
-- [ ] Write guides to implement another DialogFlow agent, facebook web app, and other boilerplating
+- [ ] Write guides to implement other DialogFlow agents, facebook apps
 
 ## Functionality
 ### DialogFlow
