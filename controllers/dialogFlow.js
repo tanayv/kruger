@@ -2,6 +2,7 @@ var apiai = require('apiai');
 var dialogFlow = apiai(process.env.DIALOGFLOW_KEY);
 
 var graphApi = require("../controllers/graphApi");
+var trello = require("../controllers/trello");
 
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
@@ -23,7 +24,7 @@ function handleMessage(sender_psid, received_message) {
                     var trelloDesc = intentArray[2];
                     var trelloDue = intentArray[3];
                     var trelloType = intentArray[4];
-                    responseText = addCard(trelloTitle, trelloDesc, trelloDue, trelloType);
+                    responseText = trello.addCard(trelloTitle, trelloDesc, trelloDue, trelloType);
                 }
                 else {
                     responseText = "Follow this format: Trello, Title, Description, Due Date, Type";
