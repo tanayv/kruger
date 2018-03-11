@@ -7,6 +7,8 @@ var router = express.Router();
 var graphApi = require("../controllers/graphApi");
 var dialogFlow = require("../controllers/dialogFlow");
 
+router.use(bodyParser.json())
+
 router.get("/", function(req, res) {
 
     let VERIFY_TOKEN = process.env.verifyToken;
