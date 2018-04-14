@@ -51,7 +51,7 @@ router.post("/", function(req, res) {
         // Check if the event is a message or postback and
         // pass the event to the appropriate handler function
         if (webhookEvent.message) {
-            dialogFlow.handleMessage(senderPsID, webhookEvent.message);        
+            dialogFlow.understand(senderPsID, webhookEvent.message);        
         } else if (webhookEvent.postback) {
             graphApi.handlePostback(senderPsID, webhookEvent.postback);
         }
