@@ -6,7 +6,6 @@ An experimental personal assistant bot for the Facebook Messenger platform
 - [To-do](#to-do)
 - [Functionality (WIP)](#functionality) <br>
   - [DialogFlow](#dialogflow) <br>
-  - [Trello API](#trello-api) <br>
   - [Spotify API](#spotify-api) <br>
 - [Guides (WIP)](#guides) <br>
   - [Deploying Webhook on Heroku + Connecting to Facebook Messenger](#deploying-webhook-on-heroku--connecting-to-facebook-messenger) <br>
@@ -21,14 +20,13 @@ An experimental personal assistant bot for the Facebook Messenger platform
 
 ## To-do
 - [X] Make repository public
-- [ ] Create subdirectory for external API caller functions (Trello, Spotify etc)
-- [ ] Transfer all intents to DialogFlow agent to avoid embarrassment
-- [ ] Figure out how to conserve commits to GitHub (Not all deployment commits are needed here)
+- [X] Create subdirectory for external API caller functions (Trello, Spotify etc)
+- [X] Transfer all intents to DialogFlow agent to avoid embarrassment
+- [X] Figure out how to conserve commits to GitHub (Not all deployment commits are needed here)
 - [ ] Write guides to implement other DialogFlow agents, facebook apps
 
 ## Functionality
 ### DialogFlow
-### Trello API
 ### Spotify API
 
 ## Guides
