@@ -41,6 +41,10 @@ var handlePostback = function(sender_psid, received_postback) {
    callSendAPI(sender_psid, response);
 }
 
+var sendWebView = function(sender_psid) {
+  
+}
+
 module.exports = {
     callSendAPI, handlePostback
 }
