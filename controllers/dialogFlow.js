@@ -25,7 +25,7 @@ var executeIntent = function(response, senderPsId) {
     graphApiPayload = {
         "text": "" + responseText
     };
-    graphApi.callSendAPI(sender_psid, graphApiPayload);
+    graphApi.callSendAPI(senderPsId, graphApiPayload);
 }
 
 
