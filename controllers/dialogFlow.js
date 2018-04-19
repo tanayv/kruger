@@ -10,7 +10,8 @@ var understand = function(senderPsId, message) {
         dFReq.on('response', function(dFRes) {
             executeIntent(dFRes, senderPsId);
         })
-        dfReq.on('error', function(error) {
+        dFReq.on('error', function(error) {
+            console.log("Bleep blop blop there was an error with logic handling");
             // Error handling logic and message delivery code
         });
         dFReq.end();
