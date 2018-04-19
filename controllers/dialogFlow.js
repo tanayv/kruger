@@ -4,7 +4,7 @@ var graphApi = require("../controllers/graphApi");
 
 var understand = function(senderPsId, message) {
     if (message.text) {
-        var dFReq = dialogFlow.textRequest(message, {
+        var dFReq = dialogFlow.textRequest(message.text, {
             sessionId: 'TINGGGGOESSSBAPBAPSKIDDYBAP'
         });
         dFReq.on('response', function(dFRes) {
@@ -12,6 +12,7 @@ var understand = function(senderPsId, message) {
         })
         dFReq.on('error', function(error) {
             console.log("Bleep blop blop there was an error with logic handling");
+            console.log(error)
             // Error handling logic and message delivery code
         });
         dFReq.end();
