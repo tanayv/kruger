@@ -42,7 +42,7 @@ var handlePostback = function(sender_psid, received_postback) {
 }
 
 var sendWebView = function(sender_psid) {
-  var response = {
+  let response = {
     "persistent_menu":[
       {
         "locale":"default",
@@ -70,9 +70,8 @@ var sendWebView = function(sender_psid) {
     ]
   }
   callSendAPI(sender_psid, response);
-
 }
 
 module.exports = {
-    callSendAPI, handlePostback
+    callSendAPI, handlePostback, sendWebView
 }
