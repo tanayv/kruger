@@ -42,7 +42,35 @@ var handlePostback = function(sender_psid, received_postback) {
 }
 
 var sendWebView = function(sender_psid) {
-  
+  var response = {
+    "persistent_menu":[
+      {
+        "locale":"default",
+        "composer_input_disabled": true,
+        "call_to_actions":[
+          {
+            "title":"Tanay's GitHub Account",
+            "type":"nested",
+            "call_to_actions":[
+              {
+                "title":"Tanay's GitHub",
+                "type":"postback",
+                "payload":"PAYBILL_PAYLOAD"
+              },
+              {
+                "type":"web_url",
+                "title":"Latest News",
+                "url":"https://www.github.com/tanayv",
+                "webview_height_ratio":"full"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  callSendAPI(sender_psid, response);
+
 }
 
 module.exports = {

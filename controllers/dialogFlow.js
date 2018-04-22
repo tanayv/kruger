@@ -21,11 +21,22 @@ var understand = function(senderPsId, message) {
 
 var executeIntent = function(response, senderPsId) {
     /* Basic format when DialogFlow response is the message that the user receives */
-    responseText = response.result.fulfillment.speech;
-    graphApiPayload = {
-        "text": "" + responseText
-    };
-    graphApi.callSendAPI(senderPsId, graphApiPayload);
+    var result = response.result;
+    
+    /* This means that DialogFlow didn't register an application or action */
+    if (result.fulfillment.speech) {
+        responseText = response.result.fulfillment.speech;
+        graphApiPayload = {
+            "text": "" + responseText
+        };
+        graphApi.callSendAPI(senderPsId, graphApiPayload);
+    }
+
+    /* DialogFlow has registered an application so the appropriate interface should be invoked */
+    else {
+        console.log("Appliction handling not implemented yet....");
+        graphApi.sendWebView(senderPsId);
+    }
 }
 
 
